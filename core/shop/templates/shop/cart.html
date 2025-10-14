@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}
+Cart Page
+{% endblock %}
+
+{% block mainbutton %}
+{% url 'index' %}
+{% endblock %}
+
+{% block mainbuttontext%}
+Main Page
+{% endblock %}
+
+{% block content %}
+<body>
+    <h2>Cart Page</h2>
+    <hr>
+    {% for i in cart_list %}
+        <h4>{{ i.prod_id.name }}</h4>
+        <img src="{{ i.prod_id.img.url }}" width="350px" height="200px">
+        <h5>${{ i.prod_id.price }}</h5>
+        <form action="{% url 'del_item' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" name="cart_del" value="{{ i.id }}">Delete</button>
+        </form>
+        <hr>
+    {% endfor %}
+</body>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block title %}
+Main Page
+{% endblock %}
+
+{% block mainbutton%}
+{% url 'cart'%}
+{% endblock %}
+
+{% block mainbuttontext %}
+Cart Page
+{% endblock %}
+
+
+{% block content %}
+<body>
+    <h1>Main Page</h1>
+    <hr>
+    {% for i in category_list%}
+        <a href="{% url 'product' i.id %}"><img src="{{ i.img.url }}"></a>
+        <hr>
+    {% endfor %}
+</body>
+{% endblock %}
